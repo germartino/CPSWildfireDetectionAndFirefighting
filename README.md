@@ -33,13 +33,17 @@ This architecture diagram represents a sophisticated system designed for wildfir
 ### 2. **Unmanned Vehicles**
 - **Unmanned Aerial Vehicle (UAV):** Equipped with ROS (Robot Operating System) and MAVROS, a ROS package that provides MAVLink protocol support. This drone can autonomously navigate and send real-time data about its status (`/drone/status`) and fire detection alerts (`/drone/alert`) back to the middleware.
 
-The UAV node is a simulation environment in the Gazebo simulator, showing a scene with various tree models where a drone is used to detect and react to wildfires. The interface shows a fire being identified at specific coordinates (latitude and longitude), marked with a red bounding box around the flame image. The terminal logs reflect the drone's mode changes and fire detection, followed by commands to release extinguishing agents. This setup is likely part of a testing phase for an unmanned aerial system that uses image recognition and GPS data to locate and respond to fires, simulating real-world operations for a wildfire detection and management system.
+The UAV node is a simulation environment in the Gazebo simulator, showing a scene with various tree models where a drone is used to detect and react to wildfires. The interface shows a fire being identified at specific coordinates (latitude and longitude), marked with a red bounding box around the flame image. The terminal logs reflect the drone's mode changes and fire detection, followed by commands to release extinguishing agents. This setup is part of a testing phase for an unmanned aerial system that uses image recognition and GPS data to locate and respond to fires, simulating real-world operations for a wildfire detection system.
 
 
 ![UAV](Images/UAV.jpg)
 
 
 - **Unmanned Ground Vehicle (UGV):** Also integrated with ROS, allowing for interoperability with the UAV and robust ground-level operations. It likely handles tasks like physical inspection and possibly firefighting, sending its status (`/rover/status`) and alerts (`/rover/alert`) to the middleware.
+
+This UGV node represents a simulation in the Gazebo environment featuring an Unmanned Ground Vehicle (UGV) system. The UGV communicates with a UAV; upon detecting a fire autonomously, the UAV sends the coordinates to the UGV. Subsequently, the UGV autonomously initiates its mission to reach the fire spot. It employs a star pattern to effectively search for, identify, and approach the fire and then simulates an extinguishing phase.
+
+![UGV](Images/UGV.jpg)
 
 ### 3. **Middleware**
 - **Node-RED + ROS:** Acts as the central hub for data aggregation and processing. Node-RED is a programming tool for wiring together hardware devices, APIs, and online services in new and interesting ways. It integrates seamlessly with ROS to process and respond to messages from both the UAV and UGV, as well as from the IoT sensors.
