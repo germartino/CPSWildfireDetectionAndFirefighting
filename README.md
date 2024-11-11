@@ -15,16 +15,13 @@ Link for the article belongs to the Special Issue Key Intelligent Technologies f
 
 ## Introduction
 
-This is a project for the exam of **Serverless Computing for IoT**.<br>
+This is a project for the master degree in **Computer Science with specialization in Internet of Things**.<br>
 
-Forest fire is one of the world's biggest calamities that produce significant damage to the atmosphere and also the injunction of danger environment.<br>
-Internet of things and drone technology are fested booming sectors, that evolves rapidly. This advanced technology can prevent such kind of incident and also making fast decision without the intervention of the humans.<br>
-The proposed service oriented architecture involves a series of communication between devices and distribute in real-time all the data to the Ground Station. The adoption of all this intelligent devices, with communication capability enable a new concept called **_Internet of Forest Things_**.<br><br>
-The architecture implements sensors which are installed on the tree that detects the presents of fire and immediately sents the right coordinate to the Unmanned Air Vehicles (UAVs). The UAV immediately takeoff and fly over the forest, reached the flame spot, the UAV releases the fire balls extinguisher and than return to launch position.
+This project aims to design a cyber-physical system for early detection and rapid response to forest fires using advanced technologies. The system incorporates Internet of Things sensors, autonomous unmanned aerial and ground vehicles controlled by the robot operating system.
 
 ## Architecture
 
-![Architecture](Images/architecture.png)
+![Architecture](Images/architecture.jpg)
 
 From the architecture, in the block "Iot Forest Sensors" we have three types of sending fire alarm, on the top we have the HW prototype made with an ESP32 microcontroller properly connected to a flame detector sensor, led/buzeer and an LCD screen.<br>
 Initially to speed up development, the flame alarm was simulated by two different nodes, one through a **sendfirealarm** function created through the Nuclio Framework and the other through the Node-RED framework. Both simulated and real sensors use the MQTT protocol to publish their status.<br>
