@@ -23,15 +23,36 @@ This project aims to design a cyber-physical system for early detection and rapi
 
 ![Architecture](Images/architecture.jpg)
 
-From the architecture, in the block "Iot Forest Sensors" we have three types of sending fire alarm, on the top we have the HW prototype made with an ESP32 microcontroller properly connected to a flame detector sensor, led/buzeer and an LCD screen.<br>
-Initially to speed up development, the flame alarm was simulated by two different nodes, one through a **sendfirealarm** function created through the Nuclio Framework and the other through the Node-RED framework. Both simulated and real sensors use the MQTT protocol to publish their status.<br>
-When the sensor detects a flame sends a notification in the RabbitMQ queue `forest/iot/fire`, the **foresthandler** function through a trigger reads all messages sent on the previous topic and when the flame alert condition occurs, the function publish an alert message on the topic `forest/iot/alert`, then two events arise:<br>
+This architecture diagram represents a sophisticated system designed for wildfire detection and management using a combination of IoT (Internet of Things), unmanned aerial vehicles (UAVs), unmanned ground vehicles (UGVs), middleware, and notification systems. Let's break down each component and their interactions:
 
-**1.** HTTP request to **IFTTT Webhook**, configured to to send an alert messages and flame coordinates to a telegram bot.<br>
-**2.** Activation of the alert status in the **Forest Dashboard**, publish the flame coordinates to the connected UAV unit that is subscribed to the topic.
+### 1. **Wildfire Detection System**
+- **MQTT:** This section depicts an IoT-based system where sensors deployed in a forest environment detect potential fire incidents. MQTT (Message Queuing Telemetry Transport) is used as the communication protocol, ideal for low-bandwidth, high-latency environments typical in remote forest areas. MQTT topics like `/forest/iot/sensor` and `/forest/iot/fire` are likely used for transmitting sensor data and fire alerts, respectively.
 
-The unit received the coordinates, initializes the flight parameters, loads the flight mission, arms the engines and start the mission. The unit in flight continues to publish on the topic `drone/sensor` the parameters necessary for geolocation and also the status of the drone.<br>
-The drone reached the fire spot drops the fire ball extinguisher and publish on the topic `forest/drone/released` the actual release, then sets his status to return to launch position, at the same time the nuclio function **dronehandler** is triggered, so a new messase is sent to update the flame status alarm.<br>
+### 2. **Unmanned Vehicles**
+- **Unmanned Aerial Vehicle (UAV):** Equipped with ROS (Robot Operating System) and MAVROS, a ROS package that provides MAVLink protocol support. This drone can autonomously navigate and send real-time data about its status (`/drone/status`) and fire detection alerts (`/drone/alert`) back to the middleware.
+- **Unmanned Ground Vehicle (UGV):** Also integrated with ROS, allowing for interoperability with the UAV and robust ground-level operations. It likely handles tasks like physical inspection and possibly firefighting, sending its status (`/rover/status`) and alerts (`/rover/alert`) to the middleware.
+
+### 3. **Middleware**
+- **Node-RED + ROS:** Acts as the central hub for data aggregation and processing. Node-RED is a programming tool for wiring together hardware devices, APIs, and online services in new and interesting ways. It integrates seamlessly with ROS to process and respond to messages from both the UAV and UGV, as well as from the IoT sensors.
+
+### 4. **Notification System**
+- **Nuclio + IFTTT + Telegram Bot:** This setup is designed for alert dissemination. Nuclio is a high-performance serverless framework that processes the data streams efficiently. It likely triggers IFTTT (If This Then That) services to send notifications through various channels, one of which is a Telegram bot. This bot could alert emergency services, volunteers, or residents in the affected areas.
+
+### 5. **Ground Control Station**
+- Depicts a user interface where all data is visualized and monitored. This station is crucial for human operators to oversee operations, make decisions based on real-time data, and possibly manually control the UAV and UGV if needed.
+
+This architecture leverages modern technologies to create a responsive and effective system for wildfire detection and response. The use of MQTT for sensor data, ROS for vehicle control, and a combination of Node-RED, Nuclio, and IFTTT for data processing and alerting makes this a highly scalable and versatile solution.
+
+For further understanding and implementation, you may want to explore the following resources:
+- [MQTT Protocol](https://mqtt.org/)
+- [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
+- [MAVROS GitHub Repository](https://github.com/mavlink/mavros)
+- [Node-RED Official Website](https://nodered.org/)
+- [Nuclio Serverless Project](https://nuclio.io/)
+- [IFTTT for Automation](https://ifttt.com/)
+- [Creating Telegram Bots](https://core.telegram.org/bots)
+
+These resources can provide in-depth guidance on configuring each component to suit specific needs, potentially enhancing your system's capabilities.
 
 ## Project Structure
 
