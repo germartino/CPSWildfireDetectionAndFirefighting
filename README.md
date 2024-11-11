@@ -1,6 +1,6 @@
 # Cyber-Physical-System-for-Wildfire-Detection-and-Firefighting
 
-Link for the academic articles: https://www.mdpi.com/2376582
+Link for the article belongs to the Special Issue Key Intelligent Technologies for Wireless Communications and Internet of Things): https://www.mdpi.com/2376582
 
 <p align="center">
 <img src="Images/drone.png" alt="logo" width="200" align="middle"/>
