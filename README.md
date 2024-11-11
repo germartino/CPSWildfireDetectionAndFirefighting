@@ -2,10 +2,6 @@
 
 Link for the article belongs to the Special Issue Key Intelligent Technologies for Wireless Communications and Internet of Things): https://www.mdpi.com/2376582
 
-<p align="center">
-<img src="Images/drone.png" alt="logo" width="200" align="middle"/>
-</p>
-
 ## Summary
 
 [1. Introduction](#Introduction): Problem introduction and a possible solution\
