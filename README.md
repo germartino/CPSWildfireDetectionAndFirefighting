@@ -1,6 +1,6 @@
 # Cyber-Physical-System-for-Wildfire-Detection-and-Firefighting
 
-https://www.mdpi.com/2376582
+Link for the academic articles: https://www.mdpi.com/2376582
 
 <p align="center">
 <img src="Images/drone.png" alt="logo" width="200" align="middle"/>
