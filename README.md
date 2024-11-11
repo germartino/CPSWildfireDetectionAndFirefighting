@@ -48,7 +48,16 @@ This UGV node represents a simulation in the Gazebo environment featuring an Unm
 - **Nuclio + IFTTT + Telegram Bot:** This setup is designed for alert dissemination. Nuclio is a high-performance serverless framework that processes the data streams efficiently. It likely triggers IFTTT (If This Then That) services to send notifications through various channels, one of which is a Telegram bot. This bot could alert emergency services, volunteers, or residents in the affected areas.
 
 ### 5. **Ground Control Station**
-- Depicts a user interface where all data is visualized and monitored. This station is crucial for human operators to oversee operations, make decisions based on real-time data, and possibly manually control the UAV and UGV if needed.
+The ground control station consists of three different web-based dashboards designed to manage the wildfire node, UAV node, and UGV node. These dashboards are built using Node-RED and interface with various standards such as ROS (via rosbridge) and MQTT for communication, providing real-time monitoring capabilities.
+
+1. **Node-RED**: Designs the dashboard workflows, integrating services and ensuring proper data handling and display.
+2. **ROSbridge**: Enables WebSocket communication between the ROS environment and the web interface for real-time updates.
+3. **rosjs**: Used for client-side functionalities, facilitating interaction with ROS topics online.
+4. **MQTT**: Handles message exchange between IoT devices (e.g., drone sensors) and the dashboard for efficient data transmission.
+
+The dashboards display critical information such as battery status, GPS coordinates, and altitude, alongside a map that marks the drone's position, enabling comprehensive remote monitoring and control.
+
+![UGV](Images/dashboard.jpg)
 
 This architecture leverages modern technologies to create a responsive and effective system for wildfire detection and response. The use of MQTT for sensor data, ROS for vehicle control, and a combination of Node-RED, Nuclio, and IFTTT for data processing and alerting makes this a highly scalable and versatile solution.
 
