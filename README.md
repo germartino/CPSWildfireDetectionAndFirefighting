@@ -59,6 +59,8 @@ The dashboards display critical information such as battery status, GPS coordina
 
 ![UGV](Images/dashboard.jpg)
 
+## Conclusion
+
 This architecture leverages modern technologies to create a responsive and effective system for wildfire detection and response. The use of MQTT for sensor data, ROS for vehicle control, and a combination of Node-RED, Nuclio, and IFTTT for data processing and alerting makes this a highly scalable and versatile solution.
 
 For further understanding and implementation, you may want to explore the following resources:
